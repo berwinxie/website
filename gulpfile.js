@@ -1,11 +1,12 @@
-var gulp = require('gulp'),
-    gutil = require('gulp-util'),
-    connect = require('gulp-connect');
+var gulp    = require('gulp'),
+    gutil   = require('gulp-util'),
+    connect = require('gulp-connect'),
+    deploy  = require('gulp-gh-pages');
 
-var sass = require('gulp-sass');
+var sass    = require('gulp-sass');
 
-var uglify = require('gulp-uglify'),
-    concat = require('gulp-concat');
+var uglify  = require('gulp-uglify'),
+    concat  = require('gulp-concat');
 
 // live reload
 gulp.task('connect', function() {
@@ -13,6 +14,23 @@ gulp.task('connect', function() {
     root: '.',
     livereload: true
   });
+});
+
+// deploy to gh-pages
+gulp.task('deploy', function(msg) {
+  return gulp.src('./build/**/*')
+    .pipe(deploy(
+      {
+        remoteUrl: 'https://github.com/berwinxie/berwinxie.github.io.git',
+        branch: 'master',
+        message: msg
+      }
+    ))
+});
+
+gulp.task('copy', function() {
+  gulp.src('CNAME').
+  pipe(gulp.dest('build'))
 });
 
 gulp.task('html', function() {
@@ -43,4 +61,4 @@ gulp.task('watch', function() {
   gulp.watch('index.html', ['html']);
 });
 
-gulp.task('default', ['html', 'js', 'sass', 'connect', 'watch']);
+gulp.task('default', ['html', 'copy', 'js', 'sass', 'connect', 'watch']);
