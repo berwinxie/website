@@ -17,15 +17,24 @@ gulp.task('connect', function() {
 });
 
 // deploy to gh-pages
-gulp.task('deploy', function(msg) {
+gulp.task('deploy', function() {
   return gulp.src('./build/**/*')
     .pipe(deploy(
       {
         remoteUrl: 'https://github.com/berwinxie/berwinxie.github.io.git',
-        branch: 'master',
-        message: msg
+        branch: 'master'
       }
     ))
+});
+
+// push changes
+gulp.task('push', function(msg) {
+  return gulp.src('./**/*')
+  .pipe(deploy(
+    {
+      branch: 'master'
+    }
+  ))
 });
 
 gulp.task('copy', function() {
