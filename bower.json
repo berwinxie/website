@@ -1,0 +1,22 @@
+{
+  "name": "berwin-website",
+  "description": "",
+  "main": "gulpfile.js",
+  "authors": [
+    "berwin <berwin7996@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/berwinxie/website",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}

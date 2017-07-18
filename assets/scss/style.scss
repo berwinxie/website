@@ -1,3 +1,52 @@
-test {
-    font-family: 'Roboto'
+$break-sm: 300px;
+$break-lg: 1280px;
+$link-color: #337ab7;
+
+body {
+  font-family: 'Zilla Slab', serif;
+  font-size: 2em;
+}
+
+img {
+  width: 100%; 
+  margin-bottom: 10px;
+}
+
+.row {
+  margin-top: 10px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 2em;
+}
+
+.projects {
+  &-li {
+    border-bottom: 1px dashed gray;
+    color: $link-color;
+    &:hover {
+      cursor: pointer;
+    }
+
+    &.active {
+      background-color: lightgray;
+    }
+  }
+
+  &-img {
+    width: 80%;
+  }
+
+  &-area {
+    border-left: 1px dashed black;
+  }
+
+  &-project {
+    display: none;
+
+    &.active {
+      display: block;
+    }
+  }
 }

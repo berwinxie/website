@@ -3,9 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "gulpfile.js",
-  "dependencies": {},
+  "dependencies": {
+    "bower": "^1.8.0"
+  },
   "devDependencies": {
     "gulp": "latest",
+    "gulp-bower": "0.0.13",
     "gulp-coffee": "latest",
     "gulp-concat": "latest",
     "gulp-connect": "latest",

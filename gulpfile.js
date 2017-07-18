@@ -5,13 +5,15 @@ var gulp    = require('gulp'),
 
 var sass    = require('gulp-sass');
 
+var bower   = require('gulp-bower');
+
 var uglify  = require('gulp-uglify'),
     concat  = require('gulp-concat');
 
 // live reload
 gulp.task('connect', function() {
   connect.server({
-    root: '.',
+    root: 'build/',
     livereload: true
   });
 });
@@ -37,9 +39,19 @@ gulp.task('push', function(msg) {
   ))
 });
 
-gulp.task('copy', function() {
+gulp.task('cname', function() {
   gulp.src('CNAME').
   pipe(gulp.dest('build'))
+});
+
+gulp.task('bower', function() {
+  return bower('./public')
+    .pipe(gulp.dest('build/assets/lib/'))
+});
+
+gulp.task('img', function() {
+  gulp.src('assets/img/**/*')
+  .pipe(gulp.dest('build/assets/img/'))
 });
 
 gulp.task('html', function() {
@@ -67,7 +79,8 @@ gulp.task('js', function() {
 gulp.task('watch', function() {
   gulp.watch('assets/js/*.js', ['js']);
   gulp.watch('assets/scss/*.scss', ['sass']);
+  gulp.watch('assets/img/**/*', ['img']);
   gulp.watch('index.html', ['html']);
 });
 
-gulp.task('default', ['html', 'copy', 'js', 'sass', 'connect', 'watch']);
+gulp.task('default', ['html', 'cname', 'bower', 'js', 'sass', 'img', 'connect', 'watch']);
